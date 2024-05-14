@@ -1,0 +1,13 @@
+def load_data_from_csv(csv_file):
+    intents_data = []
+    with open(csv_file, 'r', newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            intents_data.append({
+                'tag': row['tag'],
+                'patterns': row['patterns'].split(','),
+                'responses': row['responses'].split(',')
+            })
+    return {'intents': intents_data}
+
+data = load_data_from_csv('intents_data.csv')
